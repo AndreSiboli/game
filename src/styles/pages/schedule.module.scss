@@ -1,0 +1,9 @@
+.schedule {
+    padding: 2em;
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+    }
+}

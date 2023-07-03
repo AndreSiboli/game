@@ -1,0 +1,44 @@
+@use '@/styles/dirs/variables';
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    padding: 1em 2em;
+    border: 2px solid #000;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    color: #000;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+        background-color: #000;
+        color: #fff;
+    }
+
+    //theme
+
+    &.white {
+        border-color: #fff;
+        color: #fff;
+
+        &:hover {
+            background-color: #fff;
+            color: #000;
+        }
+    }
+
+    &.blueish {
+        border-color: variables.$third-color;
+        color: variables.$third-color;
+
+        &:hover {
+            background-color: variables.$third-color;
+            color: #fff;
+        }
+    }
+}

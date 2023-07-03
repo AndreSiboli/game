@@ -1,0 +1,29 @@
+.blog_button {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+
+        svg {
+            font-size: 1.5em;
+            color: #fff;
+        }
+    }
+}
+
+.news_container {
+    overflow: hidden;
+
+    .carousel_news {
+        display: flex;
+        gap: 1.5em;
+        width: 100%;
+        position: relative;
+        left: 0;
+        height: 100%;
+        transition: 0.5s ease-in-out;
+    }
+}

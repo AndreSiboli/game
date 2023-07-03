@@ -1,0 +1,218 @@
+.cart {
+    padding: 2em;
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 300px;
+        gap: 2em;
+    }
+
+    &_notfound {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2em;
+
+        > p {
+            font-size: 0.9em;
+        }
+
+        .cart_button {
+            max-width: 300px;
+            width: 100%;
+        }
+    }
+
+    &_items {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        padding: .5em 0;
+    }
+
+    &_item {
+        display: flex;
+        gap: 1em;
+        height: fit-content;
+        border-bottom: 1px solid #888;
+        padding: 1em 0;
+
+        .item_image {
+            max-width: 125px;
+        }
+
+        .item_info {
+            flex: 1 1 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            height: fit-content;
+
+            .info_name {
+                p {
+                    font-size: 0.9em;
+                    text-transform: uppercase;
+                }
+            }
+            .info_size {
+                color: #444;
+                p {
+                    font-size: 0.85em;
+
+                    span {
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+
+        .item_howmany {
+            flex: 1 1 20%;
+
+            display: flex;
+            gap: 0.3em;
+            height: fit-content;
+
+            .howmany_button {
+                button {
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    transition: 0.2s ease-in-out;
+                    display: flex;
+                    align-items: center;
+                    margin: -3px;
+
+                    svg {
+                        display: flex;
+                        margin: 0.5em;
+                    }
+
+                    &:hover {
+                        background-color: #aaa;
+                    }
+                }
+            }
+
+            .howmany_input {
+                flex: 1 1 20%;
+
+                max-width: 20px;
+                min-width: 20px;
+                height: 36px;
+
+                input {
+                    text-align: center;
+                    width: 100%;
+                    border: 0;
+                    outline: none;
+                    font-size: 1.05em;
+                }
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                input[type='number'] {
+                    -moz-appearance: textfield;
+                }
+            }
+        }
+
+        .item_price {
+            display: flex;
+        }
+
+        .item_delete {
+            display: inline-flex;
+            align-items: center;
+            overflow: hidden;
+            width: 36px;
+            height: 36px;
+            margin: -7px;
+
+            button {
+                background-color: transparent;
+                border: none;
+                border-radius: 50%;
+                padding: 0.5em;
+                cursor: pointer;
+                transition: 0.2s ease-in-out;
+
+                svg {
+                    display: flex;
+                    font-size: 1.5em;
+                }
+
+                &:hover {
+                    background-color: #aaa;
+                }
+            }
+        }
+    }
+
+    &_buying {
+        display: flex;
+        justify-content: flex-end;
+
+        &_container {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .cart_total {
+            p {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+                span:first-child {
+                    font-size: 1em;
+                }
+                span:last-child {
+                    font-size: 1.3em;
+                }
+            }
+        }
+    }
+
+    .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 999;
+        background-color: #2227;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        &_div {
+            border: 5px solid #fff;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: loading 2s linear infinite;
+
+            @keyframes loading {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        }
+    }
+}

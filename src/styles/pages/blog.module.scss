@@ -1,0 +1,16 @@
+.blog{
+    padding: 0 2em;
+
+    &_container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 500px;
+        padding: 0 1em;
+        
+        h1{
+            font-size: calc(1.5em + 1vw);
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,212 @@
+@use '@/styles/dirs/variables';
+
+.main {
+    width: 100%;
+    padding: 0 2em;
+    color: #fff;
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+        width: 100%;
+        min-height: 550px;
+        height: 100%;
+        background-size: cover;
+        padding: 2em 1em;
+
+        h1 {
+            font-size: calc(1em + 6vw);
+            letter-spacing: -0.05em;
+        }
+
+        > p {
+            font-size: calc(1em + 1vw);
+            text-align: center;
+        }
+    }
+
+    .transmition_container {
+        max-width: 250px;
+        width: 100%;
+    }
+}
+
+.merchant {
+    padding: 2em 2em;
+
+    &_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 500px;
+
+        p {
+            max-width: 900px;
+            width: 100%;
+            font-size: calc(1em + 1.4vw);
+            text-align: center;
+            line-height: 1.5em;
+        }
+    }
+}
+
+.team {
+    width: 100%;
+    padding: 1em 2em;
+
+    &_container {
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 3em;
+
+        h3 {
+            font-weight: bold;
+        }
+    }
+
+    .image_container {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 25%));
+        gap: 3em 1em;
+        padding: 2px;
+        width: 100%;
+
+        @media screen and (max-width: 768px) {
+            & {
+                grid-template-columns: repeat(2, minmax(0, 50%));
+            }
+        }
+    }
+}
+
+.carousel {
+    padding: 2em 2em;
+
+    &_container {
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 2em;
+    }
+}
+
+.blog {
+    background-color: variables.$third-color;
+    color: #fff;
+    width: 100%;
+    padding: 0 2em;
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2em;
+        min-height: 400px;
+    }
+
+    .news_container {
+        min-height: 300px;
+    }
+}
+
+.calendar {
+    padding: 2em;
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+    }
+}
+
+.sponsor {
+    padding: 2em;
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 2em;
+        min-height: 300px;
+    }
+
+    &_image {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+
+        .image_container {
+            img {
+                object-fit: cover;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            & {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    }
+}
+
+.register {
+    padding: 2em;
+    color: #fff;
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+        min-height: 600px;
+        background-size: cover;
+        padding: 2em;
+        position: relative;
+
+        &_after {
+            content: "";
+            background-size: cover;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: -1;
+            filter: brightness(.5);
+        }
+    }
+
+    &_title {
+        font-size: calc(1.1em + 0.3vw);
+    }
+
+    &_merchant {
+        max-width: 500px;
+        width: 100%;
+        font-size: calc(0.8em + 0.5vw);
+        text-align: center;
+    }
+
+    &_input {
+        max-width: 300px;
+        width: 100%;
+        height: 65px;
+    }
+
+    &_respect {
+        font-size: 0.9em;
+    }
+}
