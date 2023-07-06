@@ -11,8 +11,8 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        min-height: 50px;
-        transition: min-height .5s;
+        min-height: calc(25px + 2vw);
+        transition: min-height 0.5s;
     }
 
     &_navigation,
@@ -155,11 +155,13 @@
     }
 
     @media screen and (max-width: 1000px) {
-        &_container{
-            min-height: 80px;
+        &.top {
+            .header_container {
+                min-height: 5em;
+            }
         }
 
-        &_logo{
+        &_logo {
             justify-content: flex-start;
         }
 

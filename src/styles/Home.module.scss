@@ -15,11 +15,12 @@
         min-height: 550px;
         height: 100%;
         background-size: cover;
-        padding: 2em 1em;
+        padding: 3em;
 
         h1 {
-            font-size: calc(1em + 6vw);
+            font-size: clamp(1.3em, 1em + 6vw, 10em);
             letter-spacing: -0.05em;
+            text-align: center;
         }
 
         > p {

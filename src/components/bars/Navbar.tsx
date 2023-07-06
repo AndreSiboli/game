@@ -1,6 +1,6 @@
 import styles from '@/styles/bars/Navbar.module.scss';
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
+import { use, useContext, useEffect, useState } from 'react';
 import { CartContext } from '@/context/Cart';
 import { ProductType } from '@/@types/types';
 
@@ -19,6 +19,7 @@ export default function Navbar() {
     const [isActive, setIsActive] = useState(false);
     const [windowSize, setWindowSize] = useState(0);
     const [numberItems, setNumberItems] = useState('0');
+    const [isTop, setIsTop] = useState(true);
     const { items, setItems }: any = useContext(CartContext);
 
     useEffect(() => {
@@ -26,6 +27,14 @@ export default function Navbar() {
             setWindowSize(window.innerWidth);
         });
     }, []);
+
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            const top = window.scrollY;
+            if (top === 0) return setIsTop(true);
+            setIsTop(false);
+        });
+    }, [isTop]);
 
     useEffect(() => {
         if (window.innerWidth >= 1000) setIsActive(false);
@@ -48,8 +57,10 @@ export default function Navbar() {
         setIsActive(false);
     };
 
+    console.log(isTop);
+
     return (
-        <header className={styles.header}>
+        <header className={isTop ? `${styles.header} ${styles.top}` : styles.header}>
             <Container>
                 <div className={styles.header_container}>
                     <nav className={styles.header_navigation}>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/styles/Carousel.module.scss';
 
 import Img from './Img';
+import Link from 'next/link';
 
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import arcade1 from '@/assets/arcade-1.png';
@@ -61,13 +62,19 @@ export default function Carousel() {
             </div>
             <div className={styles.carousel_container} ref={carousel}>
                 <div className={styles.carousel_image} ref={image}>
-                    <Img src={arcade1.src} alt="" style={style} />
+                    <Link href="/merchant/3">
+                        <Img src={arcade1.src} alt="" style={style} />
+                    </Link>
                 </div>
                 <div className={styles.carousel_image}>
-                    <Img src={arcade2.src} alt="" style={style} />
+                    <Link href="/merchant/2">
+                        <Img src={arcade2.src} alt="" style={style} />
+                    </Link>
                 </div>
                 <div className={styles.carousel_image}>
-                    <Img src={arcadeSpace.src} alt="" style={style} />
+                    <Link href="/merchant/1">
+                        <Img src={arcadeSpace.src} alt="" style={style} />
+                    </Link>
                 </div>
             </div>
         </div>
