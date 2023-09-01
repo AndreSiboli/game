@@ -10,14 +10,18 @@ import arcade2 from '@/assets/arcade-2.png';
 import arcadeSpace from '@/assets/arcade-space.png';
 
 export default function Carousel() {
-    const carousel: any = useRef();
-    const image: any = useRef();
-    const [img, setImg] = useState(-1);
+    const carousel = useRef<HTMLDivElement>(null);
+    const image = useRef<HTMLDivElement>(null);
+    // const [img, setImg] = useState(-1);
+    const [currentSlide, setCurrentSlide] = useState(1);
     const style = { width: '100%', height: '100%' };
 
     useEffect(() => {
         function resize() {
-            carousel.current.style.left = -(img * -image.current.clientWidth) + 'px';
+            if (!carousel.current || !image.current) return;
+            carousel.current.style.scrollBehavior = 'auto';
+            carousel.current.scrollLeft = image.current.offsetWidth * currentSlide;
+            carousel.current.style.scrollBehavior = 'smooth';
         }
 
         window.addEventListener('resize', resize);
@@ -25,37 +29,46 @@ export default function Carousel() {
         return () => {
             window.removeEventListener('resize', resize);
         };
-    }, [img]);
+    }, [currentSlide]);
 
     useEffect(() => {
-        carousel.current.style.left = -image.current.clientWidth + 'px';
+        if (!carousel.current || !image.current) return;
+        // carousel.current.style.scrollBehavior = 'auto';
+        carousel.current.scrollLeft = image.current.offsetWidth * currentSlide;
+        // carousel.current.style.scrollBehavior = 'smooth';
     }, []);
 
-    function menageCarousel(value: number) {
-        const imageWidth = image.current.clientWidth;
+    function manageCarousel(value: number) {
+        if (!image.current || !carousel.current) return;
+        const imageWidth = image.current.offsetWidth;
 
-        if (img === 0 && value === 1) {
-            carousel.current.style.left = -2 * imageWidth + 'px';
-            setImg(-2);
-        } else if (img === -2 && value === -1) {
-            carousel.current.style.left = 0 * imageWidth + 'px';
-            setImg(0);
-        } else {
-            carousel.current.style.left = (img + value) * imageWidth + 'px';
-            setImg((prevValue) => prevValue + value);
+        const next = currentSlide + value;
+
+        if (next <= -1) {
+            carousel.current.scrollLeft = imageWidth * 2;
+            setCurrentSlide(2);
+            return;
         }
+        if (next >= 3) {
+            carousel.current.scrollLeft = 0;
+            setCurrentSlide(0);
+            return;
+        }
+
+        carousel.current.scrollLeft = imageWidth * next;
+        setCurrentSlide(next);
     }
 
     return (
         <div className={styles.carousel}>
             <div className={styles.carousel_button}>
                 <div className={styles.button_container}>
-                    <button onClick={() => menageCarousel(1)}>
+                    <button onClick={() => manageCarousel(-1)}>
                         <FaLongArrowAltRight />
                     </button>
                 </div>
                 <div className={styles.button_container}>
-                    <button onClick={() => menageCarousel(-1)}>
+                    <button onClick={() => manageCarousel(1)}>
                         <FaLongArrowAltRight />
                     </button>
                 </div>

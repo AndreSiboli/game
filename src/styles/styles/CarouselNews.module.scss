@@ -18,12 +18,12 @@
     overflow: hidden;
 
     .carousel_news {
-        display: flex;
-        gap: 1.5em;
+        overflow: hidden;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+        max-width: 1240px;
         width: 100%;
         position: relative;
-        left: 0;
         height: 100%;
-        transition: 0.5s ease-in-out;
     }
 }

@@ -5,31 +5,19 @@ import News from './News';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 export default function CarouselNews() {
-    const parentNews: any = useRef();
-    const newsEl: any = useRef();
-    const [news, setNews] = useState(0);
+    const newItems = [...items, ...items, ...items];
+    const parentNews = useRef<HTMLDivElement>(null);
+    const newsEl = useRef<HTMLDivElement>(null);
+    const [currentNews, setCurrentNews] = useState(0);
+    const [newsLength, setNewsLength] = useState(newItems.length);
     const [config, setConfig] = useState(4);
-
-    function defineCell() {
-        const width = window.innerWidth
-        if (width > 768) setConfig(4);
-        // if (width <= 768 && width > 500) setConfig(3);
-        if (width <= 500) setConfig(2);
-    }
-
-    useEffect(() => {
-        const getChildrens = newsEl.current.children[0]
-        const totalChildren = getChildrens.children.length; //get the children length
-        parentNews.current.style.left = -newsEl.current.clientWidth * 0 + 'px';
-        parentNews.current.style.width = `${Math.floor(totalChildren / config) * 100}%`;
-        defineCell();
-    }, []);
 
     useEffect(() => {
         function resize() {
-            console.log(newsEl.current.clientWidth)
-            parentNews.current.style.left = -(news * -newsEl.current.clientWidth) + 'px';
-            defineCell();
+            if (!parentNews.current) return;
+            parentNews.current.style.scrollBehavior = 'auto';
+            parentNews.current.scrollLeft = parentNews.current.offsetWidth * currentNews;
+            parentNews.current.style.scrollBehavior = 'smooth';
         }
 
         window.addEventListener('resize', resize);
@@ -37,43 +25,66 @@ export default function CarouselNews() {
         return () => {
             window.removeEventListener('resize', resize);
         };
-    }, [news]);
+    }, [currentNews]);
+
+    useEffect(() => {
+        function defineConfig() {
+            const width = window.innerWidth;
+            if (width > 1000) setConfig(4);
+            else if (width > 500) setConfig(3);
+            else setConfig(2);
+        }
+
+        window.addEventListener('resize', defineConfig);
+        defineConfig();
+
+        return () => {
+            window.removeEventListener('resize', defineConfig);
+        };
+    }, []);
 
     function carousel(value: number) {
-        const imageWidth = newsEl.current.clientWidth;
-        const totalChildren = newsEl.current.children[0].children.length;
-        const totalNews = Math.ceil(totalChildren / config) - 1;
+        if (!parentNews.current) return;
 
-        if (news === 0 && value === 1) {
-            parentNews.current.style.left = -totalNews * imageWidth + 'px';
-            setNews(-totalNews);
-        } else if (news === -totalNews && value === -1) {
-            parentNews.current.style.left = 0 * imageWidth + 'px';
-            setNews(0);
-        } else {
-            parentNews.current.style.left = (news + value) * imageWidth + 'px';
-            setNews((prevValue) => prevValue + value);
+        const imageWidth = parentNews.current.offsetWidth;
+
+        const next = currentNews + value;
+        const count = Math.floor((newItems.length - 1) / config);
+
+        console.log(newItems.length / config, 'length');
+        console.log(newItems.length, config, count);
+
+        if (next <= -1) {
+            parentNews.current.scrollLeft = imageWidth * count;
+            setCurrentNews(count);
+            return;
         }
+        if (next > count) {
+            parentNews.current.scrollLeft = 0;
+            setCurrentNews(0);
+            return;
+        }
+
+        parentNews.current.scrollLeft = imageWidth * next;
+        setCurrentNews(next);
     }
 
     function renderNews() {
-        const newItems = [...items, ...items, ...items];
-        while (newItems.length % 4 != 0) {
-            newItems.push({
-                date: '',
-                title: '',
-                to: '',
-            });
-        }
+        // while (newItems.length % 4 != 0) {
+        //     newItems.push({
+        //         date: '',
+        //         title: '',
+        //         to: '',
+        //     });
+        // }
 
-        console.log(1240 / config);
         return newItems.map((item, index) => (
             <News
                 date={item.date}
                 title={item.title}
                 to={item.to}
                 key={item.title + index}
-                style={{ maxWidth: `calc((1240px / ${config}) - 1.5em)` }}
+                style={{}}
             />
         ));
     }
@@ -81,10 +92,10 @@ export default function CarouselNews() {
     return (
         <>
             <div className={styles.blog_button}>
-                <button onClick={() => carousel(1)}>
+                <button onClick={() => carousel(-1)}>
                     <FaAngleLeft />
                 </button>
-                <button onClick={() => carousel(-1)}>
+                <button onClick={() => carousel(1)}>
                     <FaAngleRight />
                 </button>
             </div>

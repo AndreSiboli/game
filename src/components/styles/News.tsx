@@ -14,7 +14,7 @@ export default function News(props: PropTypes) {
     return (
         <>
             {date || title || to ? (
-                <div className={styles.news} style={style}>
+                <div className={styles.news} >
                     <div className={styles.news_date}>
                         <span>{date}</span>
                     </div>

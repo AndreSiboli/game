@@ -99,14 +99,14 @@ export default function Home() {
 
             {/*It's disabled cause a bug */}
 
-            {/* <section className={styles.blog}>
+            <section className={styles.blog}>
                 <Container>
                     <div className={styles.blog_container}>
                         <h3>BLOG</h3>
                         <CarouselNews />
                     </div>
                 </Container>
-            </section> */}
+            </section>
 
             <section className={styles.calendar}>
                 <Container>

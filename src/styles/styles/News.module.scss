@@ -1,13 +1,20 @@
 .news {
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
+    white-space: wrap;
     gap: 1em;
-    // max-width: calc((1240px / 4) - 1.5em);
-    width: 100%;
+    width: calc((100% / 4) - 1.5em);
 
-    // @media screen and (max-width: 768px) {
-    //     max-width: calc((1240px / 3) - 1.5em);
-    // }
+    &:not(:last-child) {
+        margin-right: 1.5em;
+    }
+
+    @media screen and (max-width: 1000px) {
+        width: calc((100% / 3) - 1.5em);
+    }
+
+    @media screen and (max-width: 500px) {
+        width: calc((100% / 2) - 1.5em);
+    }
 
     .news_date {
         span {
