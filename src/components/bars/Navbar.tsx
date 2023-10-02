@@ -57,8 +57,6 @@ export default function Navbar() {
         setIsActive(false);
     };
 
-    console.log(isTop);
-
     return (
         <header className={isTop ? `${styles.header} ${styles.top}` : styles.header}>
             <Container>

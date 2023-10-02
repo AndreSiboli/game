@@ -9,7 +9,6 @@ export default function CarouselNews() {
     const parentNews = useRef<HTMLDivElement>(null);
     const newsEl = useRef<HTMLDivElement>(null);
     const [currentNews, setCurrentNews] = useState(0);
-    const [newsLength, setNewsLength] = useState(newItems.length);
     const [config, setConfig] = useState(4);
 
     useEffect(() => {
@@ -50,9 +49,6 @@ export default function CarouselNews() {
 
         const next = currentNews + value;
         const count = Math.floor((newItems.length - 1) / config);
-
-        console.log(newItems.length / config, 'length');
-        console.log(newItems.length, config, count);
 
         if (next <= -1) {
             parentNews.current.scrollLeft = imageWidth * count;

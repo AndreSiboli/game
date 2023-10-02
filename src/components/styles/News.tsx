@@ -5,7 +5,7 @@ interface PropTypes {
     date: string;
     title: string;
     to: string;
-    style: {}
+    style: {};
 }
 
 export default function News(props: PropTypes) {
@@ -14,17 +14,19 @@ export default function News(props: PropTypes) {
     return (
         <>
             {date || title || to ? (
-                <div className={styles.news} >
-                    <div className={styles.news_date}>
-                        <span>{date}</span>
-                    </div>
-                    <div className={styles.news_title}>
-                        <p>{title}</p>
-                    </div>
-                    <div className={styles.read_more}>
-                        <span>
-                            Ler mais <FaLongArrowAltRight />
-                        </span>
+                <div className={styles.news}>
+                    <div className={styles.news_container}>
+                        <div className={styles.news_date}>
+                            <span>{date}</span>
+                        </div>
+                        <div className={styles.news_title}>
+                            <p>{title}</p>
+                        </div>
+                        <div className={styles.read_more}>
+                            <span>
+                                Ler mais <FaLongArrowAltRight />
+                            </span>
+                        </div>
                     </div>
                 </div>
             ) : (

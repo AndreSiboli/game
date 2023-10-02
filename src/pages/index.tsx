@@ -27,7 +27,6 @@ import logo2 from '@/assets/logotipo/logo-xcetra.png';
 import logo3 from '@/assets/logotipo/logo-saranac.png';
 import logo4 from '@/assets/logotipo/logo-cord.png';
 
-
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
@@ -96,8 +95,6 @@ export default function Home() {
                     </div>
                 </Container>
             </section>
-
-            {/*It's disabled cause a bug */}
 
             <section className={styles.blog}>
                 <Container>

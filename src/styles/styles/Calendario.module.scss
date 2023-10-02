@@ -26,9 +26,10 @@
 .calendar {
     max-width: 900px;
     width: 100%;
+    border-collapse: collapse;
+    overflow: auto;
     // table-layout: fixed;
 
-    border-collapse: collapse;
     tr {
         border: 1px solid #fff;
 
@@ -37,12 +38,21 @@
             border: 2.5px solid #fff;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
         td {
             cursor: pointer;
             width: calc(100% / 7);
-            height: 123px;
+            height: 10vw;
+
+            @media screen and (min-width: 1400px) {
+                height: 123px;
+            }
+
+            @media screen and (min-width: 1400px) {
+                height: 123px;
+            }
 
             span {
                 display: flex;
